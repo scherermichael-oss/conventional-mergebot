@@ -28,9 +28,9 @@
     ]
   },
   "keywords": [
+    "conventional-commits",
     "probot",
     "probot-plugin",
-    "conventional",
     "semver"
   ],
   "license": "MIT",
