@@ -3,7 +3,7 @@
 const handleComment = require('./lib/handleComment')
 const handlePullRequestChange = require('./lib/handlePullRequestChange')
 
-const probotPlugin = function (robot) {
+const probotPlugin = (robot) => {
   robot.on([
     'pull_request.edited',
     'pull_request.opened',
