@@ -35,7 +35,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@probot/serverless-lambda": "github:probot/serverless-lambda",    "@semantic-release/commit-analyzer": "5.0.3",
+    "@probot/serverless-lambda": "github:probot/serverless-lambda",
+    "@semantic-release/commit-analyzer": "5.0.3",
     "debug": "3.1.0",
     "probot": "6.1.0",
     "serverless": "1.29.2",
