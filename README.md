@@ -28,10 +28,6 @@ The first line will be taken from the `title` of the pull request. The following
 
     This is used for bugfixes. A new patch version will be released.
 
-- `chore`
-
-    This is used for other work that should trigger a new release and create an entry in the changelog. A new patch version will be released.
-
 For the rest of the commit message, the description of the pull request (i.e. first comment) is searched for the `## Changelog` heading. Hence, the description for the sample might look like:
 
 ```
@@ -50,7 +46,7 @@ BREAKING CHANGE: You must update the configuration.
 This will be ignored, too.
 ```
 
-If a line in section `Changelog` starts with `BREAKING CHANGE:`, a `major` release will be triggered. 
+If a line in section `Changelog` starts with `BREAKING CHANGE:`, a `major` release will be triggered.
 
 ### Merging
 
