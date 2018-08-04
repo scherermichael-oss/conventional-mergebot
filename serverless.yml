@@ -12,6 +12,7 @@ functions:
     environment:
       WEBHOOK_SECRET: ${file(config/config.${self:provider.stage}.json):WEBHOOK_SECRET}
       APP_ID: ${file(config/config.${self:provider.stage}.json):APP_ID}
+      ALLOW_MANUAL_MERGE: 'true'
 
     events:
       - http:
