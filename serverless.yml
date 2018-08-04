@@ -1,0 +1,19 @@
+service: conventional-mergebot
+
+provider:
+  name: aws
+  logRetentionInDays: 7
+  runtime: nodejs8.10
+
+functions:
+  probot:
+    handler: handler.probot
+
+    environment:
+      WEBHOOK_SECRET: ${file(config/config.${self:provider.stage}.json):WEBHOOK_SECRET}
+      APP_ID: ${file(config/config.${self:provider.stage}.json):APP_ID}
+
+    events:
+      - http:
+         path: /
+         method: post

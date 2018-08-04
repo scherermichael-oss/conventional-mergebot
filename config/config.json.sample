@@ -1,6 +1,5 @@
 {
   "APP_ID": 9999,
-  "LOG_FORMAT": "example-format",
   "GITHUB_CLIENT_ID": "example-github-client-id",
   "GITHUB_CLIENT_SECRET": "example-github-client-secret",
   "WEBHOOK_SECRET": "example-webhook-secret"

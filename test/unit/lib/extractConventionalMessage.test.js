@@ -9,7 +9,7 @@ describe('extractConventionalCommitMessage', () => {
     const body = [
       'line 1',
       'line 2',
-      '## Release Notes',
+      '## Changelog',
       'message 1',
       'message 2'
     ].join('\n')
@@ -23,7 +23,7 @@ describe('extractConventionalCommitMessage', () => {
 
   it('extracts the message from the start of the body.', async () => {
     const body = [
-      '## Release Notes',
+      '## Changelog',
       'message 1',
       'message 2',
       '## Other Section',
@@ -43,7 +43,7 @@ describe('extractConventionalCommitMessage', () => {
       '## First Section',
       'line 1',
       'line 2',
-      '## Release Notes',
+      '## Changelog',
       'message 1',
       'message 2',
       '## Other Section',
@@ -63,7 +63,7 @@ describe('extractConventionalCommitMessage', () => {
       '## First Section',
       'line 1',
       'line 2',
-      '## Release Notes',
+      '## Changelog',
       '   ',
       'message 1',
       'message 2',

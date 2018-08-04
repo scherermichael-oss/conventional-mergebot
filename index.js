@@ -7,12 +7,10 @@ const probotPlugin = (robot) => {
   robot.on([
     'pull_request.edited',
     'pull_request.opened',
-    'pull_request.reopened',
-    'pull_request.synchronize',
-    'pull_request_review.submitted'
+    'pull_request.reopened'
   ], handlePullRequestChange)
   robot.on([
-    'issue_comment'
+    'issue_comment.created'
   ], handleComment)
 }
 
