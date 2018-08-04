@@ -56,7 +56,7 @@ Unfortunately, you cannot use the `Merge` button with this bot. To create the cu
 /merge
 ```
 
-This will trigger the merge or create a new comment with instructions if there is still information missing.
+All previous commits are squashed and the merge is triggered. If any information is still missing, a new comment with instructions is created.
 
 ## Deployment
 
