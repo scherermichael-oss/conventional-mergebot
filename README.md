@@ -8,7 +8,7 @@ This GitHub application uses the description of a pull request to create a merge
 
 It can set the status of the pull request to `error` if there is not enough information to build the commit message, if wished.
 
-The commit message follows the pattern defined by [Converntional Commits](https://conventionalcommits.org) as you can see in the following sample:
+The commit message follows the pattern defined by [Conventional Commits](https://conventionalcommits.org) as you can see in the following sample:
 
 ```
 feat: Introducing a cool feature.
