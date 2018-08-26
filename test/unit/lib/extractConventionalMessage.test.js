@@ -58,6 +58,28 @@ describe('extractConventionalCommitMessage', () => {
     expect(extractConventionalCommitMessage(body)).toBe(expected)
   })
 
+  it('ignores # in the middle of the changelog section.', async () => {
+    const body = [
+      '## First Section',
+      'line 1',
+      'line 2',
+      '## Changelog',
+      'message #1',
+      'message #2',
+      'message ### 123',
+      '## Other Section',
+      'line 1',
+      'line 2'
+    ].join('\n')
+    const expected = [
+      'message #1',
+      'message #2',
+      'message ### 123'
+    ].join('\n')
+
+    expect(extractConventionalCommitMessage(body)).toBe(expected)
+  })
+
   it('trims the message.', async () => {
     const body = [
       '## First Section',

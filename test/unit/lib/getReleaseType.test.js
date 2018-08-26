@@ -9,7 +9,7 @@ describe('getReleaseType', () => {
     const message = [
       'feat: message 1',
       '',
-      'BREAKING CHANGE: message 2'
+      'BREAKING CHANGES: message 2'
     ].join('\n')
 
     expect(await getReleaseType(message)).toEqual('major')
