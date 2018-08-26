@@ -15,7 +15,7 @@ feat: Introducing a cool feature.
 
 The new feature is awesome!
 
-BREAKING CHANGE: You must update the configuration.
+BREAKING CHANGES: You must update the configuration.
 ```
 
 The first line will be taken from the `title` of the pull request. The following prefixes are recognized:
@@ -39,14 +39,14 @@ This text will not be included in the commit message
 
 The new feature is awesome!
 
-BREAKING CHANGE: You must update the configuration.
+BREAKING CHANGES: You must update the configuration.
 
 ## Another section
 
 This will be ignored, too.
 ```
 
-If a line in section `Changelog` starts with `BREAKING CHANGE:`, a `major` release will be triggered.
+If a line in section `Changelog` starts with `BREAKING CHANGES:`, a `major` release will be triggered.
 
 ### Merging
 
