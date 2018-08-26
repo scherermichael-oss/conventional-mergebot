@@ -58,6 +58,20 @@ describe('extractConventionalCommitMessage', () => {
     expect(extractConventionalCommitMessage(body)).toBe(expected)
   })
 
+  it(`ignores case when searching for 'Changelog'.`, async () => {
+    const body = [
+      '## changeLOG',
+      'message 1',
+      'message 2'
+    ].join('\n')
+    const expected = [
+      'message 1',
+      'message 2'
+    ].join('\n')
+
+    expect(extractConventionalCommitMessage(body)).toBe(expected)
+  })
+
   it('ignores # in the middle of the changelog section.', async () => {
     const body = [
       '## First Section',
