@@ -115,4 +115,11 @@ describe('extractConventionalCommitMessage', () => {
 
     expect(extractConventionalCommitMessage(body)).toBe(expected)
   })
+
+  it('works with empty messages.', async () => {
+    const body = ''
+    const expected = ''
+
+    expect(extractConventionalCommitMessage(body)).toBe(expected)
+  })
 })
