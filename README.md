@@ -16,6 +16,8 @@ feat: Introducing a cool feature.
 The new feature is awesome!
 
 BREAKING CHANGES: You must update the configuration.
+
+#1234
 ```
 
 The first line will be taken from the `title` of the pull request. The following prefixes are recognized:
@@ -28,25 +30,55 @@ The first line will be taken from the `title` of the pull request. The following
 
     This is used for bugfixes. A new patch version will be released.
 
-For the rest of the commit message, the description of the pull request (i.e. first comment) is searched for the `## Changelog` heading. Hence, the description for the sample might look like:
+For the rest of the commit message, the description of the pull request (i.e. first comment) is searched for the `# Details` heading:
 
 ```
-## Internal information
+# Details
 
-This text will not be included in the commit message
+The new feature is awesome!
+```
 
-## Changelog
+You can also add a section `# Breaking Changes` to trigger a major release:
+
+```
+# Breaking Changes
+
+You must update the configuration.
+```
+
+Issues can be listed in then`# References` section:
+
+```
+# References
+
+#1234
+```
+
+For the sample commit message given above, the complete description might look like:
+
+```
+# Internal Information
+
+This text will be excluded the commit message.
+
+# Details
 
 The new feature is awesome!
 
-BREAKING CHANGES: You must update the configuration.
+# Breaking Changes
 
-## Another section
+You must update the configuration.
 
-This will be ignored, too.
+# References
+
+#1234
+
+# More Internal Information
+
+This text will be excluded the commit message, too.
 ```
 
-If a line in section `Changelog` starts with `BREAKING CHANGES:`, a `major` release will be triggered.
+The level of the headings does not matter. You can increase it if you prefer smaller text.
 
 ### Merging
 
