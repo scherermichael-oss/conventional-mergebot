@@ -30,7 +30,11 @@ The first line will be taken from the `title` of the pull request. The following
 
     This is used for bugfixes. A new patch version will be released.
 
-For the rest of the commit message, the description of the pull request (i.e. first comment) is searched for the `# Details` heading:
+Instead of using a prefix in the title, you can also add a label to the pull request that indicates the type. Enable this feature by setting the environmental variables `FEATURE_LABEL` and `BUGFIX_LABEL`. You can still add a prefix to the title. In this case, the corresponding label is assigned to the pull request.
+
+The description of the pull request (i.e. first comment) may contain several sections that will be added to the commit message.
+
+Use section `# Details` for additional information:
 
 ```
 # Details
@@ -38,7 +42,7 @@ For the rest of the commit message, the description of the pull request (i.e. fi
 The new feature is awesome!
 ```
 
-You can also add a section `# Breaking Changes` to trigger a major release:
+To trigger a major release, add section `# Breaking Changes` with a description of the changes:
 
 ```
 # Breaking Changes
@@ -46,7 +50,7 @@ You can also add a section `# Breaking Changes` to trigger a major release:
 You must update the configuration.
 ```
 
-Issues can be listed in then`# References` section:
+List related issues in section `# References`:
 
 ```
 # References
@@ -54,12 +58,12 @@ Issues can be listed in then`# References` section:
 #1234
 ```
 
-For the sample commit message given above, the complete description might look like:
+For the sample commit message given above, the complete pull request description might look like:
 
 ```
 # Internal Information
 
-This text will be excluded the commit message.
+This text will be excluded from the commit message.
 
 # Details
 
@@ -75,20 +79,20 @@ You must update the configuration.
 
 # More Internal Information
 
-This text will be excluded the commit message, too.
+This text will be excluded from the commit message, too.
 ```
 
-The level of the headings does not matter. You can increase it if you prefer smaller text.
+The level of the headings does not matter. You can increase it if you prefer a smaller text size.
 
 ### Merging
 
-Unfortunately, you cannot use the `Merge` button with this bot. To create the custom merge commit, you must create a new comment with the merge command:
+Unfortunately, you cannot use the `Merge` button with this bot. To create the custom merge commit, create a new comment with the merge command:
 
 ```
 /merge
 ```
 
-All previous commits are squashed and the merge is triggered. If any information is still missing, a new comment with instructions is created.
+All commits are squashed and merged using the custom commit message. If any information is missing, a new comment with instructions is created.
 
 ## Deployment
 
@@ -96,14 +100,22 @@ This application is build using the [Probot framework](https://probot.github.io)
 
 ### Serverless
 
-You can use [serverless](https://serverless.com) to deploy the application. The configuration for AWS Lambda is already included. You must only edit the file `config/config.dev.json.sample`, remove its suffix `.sample`, and store the private key created by GitHub in the root folder as `private-key.pem`.
+You can use [serverless](https://serverless.com) to deploy the application. The configuration for AWS Lambda is already included. You must only update the file `config/config.dev.json.sample`, remove its suffix `.sample`, and store the private key created by GitHub in the root folder as `private-key.pem`.
 
 ## Configuration
 
-Besides the environment variables needed by Probot, you can define the following variable:
+Besides the environment variables needed by Probot, you can define the following variables:
 
 - `ALLOW_MANUAL_MERGE`
 
-    If set to `true` (the default) the commit status will always be `success`.
+    If set to `true` (the default) the commit check will always return `success`.
 
     If set to `false`, it will be `error` if not enough information can be found to build a commit message, or `pending` otherwise. So, the merge button will never be green in order to remind you to use the `/merge` command.
+
+- `FEATURE_LABEL`
+
+    Name of the label that indicates a feature release.
+
+- `BUGFIX_LABEL`
+
+    Name of the label that indicates a bugfix release.
