@@ -6,6 +6,8 @@ const handlePullRequestChange = require('./lib/handlePullRequestChange')
 const probotPlugin = (robot) => {
   robot.on([
     'pull_request.edited',
+    'pull_request.labeled',
+    'pull_request.unlabeled',
     'pull_request.opened',
     'pull_request.reopened'
   ], handlePullRequestChange)
