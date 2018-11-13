@@ -1,5 +1,8 @@
 service: conventional-mergebot
 
+plugins:
+  - serverless-offline
+
 provider:
   name: aws
   logRetentionInDays: 7
