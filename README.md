@@ -84,6 +84,18 @@ Unfortunately, you cannot use the `Merge` button with this bot. To create the cu
 
 All commits are squashed and merged using a conventional commit message. If it is not possible to create such a message, the standard message is used.
 
+### Assigning reviewers
+
+You can define rules to automatically request reviews from users or teams based on the topics and labels set for the pull request.
+
+The rules are provided via environment variables `REVIEW_USERS_RULES` and `REVIEW_TEAMS_RULES`.
+
+Example:
+
+```bash
+REVIEW_TEAMS_RULES = "documentation,release/major=+docs-team documentation,release/minor=-docs-team documentation=-docs-team"
+```
+
 ## Deployment
 
 This application is build using the [Probot framework](https://probot.github.io). The [documentation](https://probot.github.io/docs/deployment/) provides information about how to deploy it.
@@ -94,11 +106,10 @@ You can use [serverless](https://serverless.com) to deploy the application. The 
 
 ### Environment variables
 
-- `COMMIT_CONFIG`
-
-- `LABEL_MAJOR`
-- `LABEL_MINOR`
-- `LABEL_PATCH`
-
-- `REVIEW_USERS`
-- `REVIEW_TEAMS`
+- `COMMIT_CONFIG`: Config for semantic release analyzer
+- `LABEL_PREFIX`: Prefix for all created labels
+- `LABEL_SUFFIX_MAJOR`: Suffix of label for major release
+- `LABEL_SUFFIX_MINOR`: Suffix of label for minor release
+- `LABEL_SUFFIX_PATCH`: Suffix of label for patch release
+- `REVIEW_USERS_RULES`: Rule for requesting reviews from users (see [Assigning reviewers](#assigning-reviewers))
+- `REVIEW_TEAMS_RULES`: Rule for requesting reviews from teams (see [Assigning reviewers](#assigning-reviewers))

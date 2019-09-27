@@ -15,6 +15,7 @@
   ],
   "scripts": {
     "lint": "standard",
+    "lint:fix": "standard --fix",
     "start": "probot run ./index.js",
     "pretest": "npm run lint",
     "test": "jest",
@@ -36,17 +37,18 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@probot/serverless-lambda": "0.2.0",
-    "@semantic-release/commit-analyzer": "6.1.0",
-    "debug": "4.1.0",
+    "@probot/serverless-lambda": "0.3.0",
+    "@semantic-release/commit-analyzer": "6.3.0",
+    "debug": "4.1.1",
     "getenv": "0.7.0",
-    "probot": "7.3.1",
-    "serverless": "1.32.0"
+    "lodash": "4.17.15",
+    "probot": "9.5.0",
+    "serverless": "1.53.0"
   },
   "devDependencies": {
-    "jest": "23.6.0",
-    "serverless-offline": "3.31.2",
-    "standard": "12.0.1"
+    "jest": "24.9.0",
+    "serverless-offline": "5.11.0",
+    "standard": "14.3.1"
   },
   "jest": {
     "testRegex": "/test/unit/.+\\.test\\.js$",
