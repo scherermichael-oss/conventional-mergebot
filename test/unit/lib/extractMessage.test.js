@@ -9,7 +9,7 @@ describe('extractMessage', () => {
     const title = ''
     const body = ''
 
-    expect(extractMessage(title, body)).toEqual({ title: '', body: '', full: '' })
+    expect(extractMessage(title, body, [])).toEqual({ title: '', body: '', full: '' })
   })
 
   it('works with a complete messages.', async () => {
@@ -23,7 +23,7 @@ describe('extractMessage', () => {
       'ref1'
     ].join('\n')
 
-    expect(extractMessage(title, body)).toEqual({
+    expect(extractMessage(title, body, [])).toEqual({
       title: 'fix: Test',
       body: [
         'details1',
@@ -52,7 +52,7 @@ describe('extractMessage', () => {
       '### References'
     ].join('\n')
 
-    expect(extractMessage(title, body)).toEqual({
+    expect(extractMessage(title, body, [])).toEqual({
       title: 'fix: Test',
       body: '',
       full: 'fix: Test'
@@ -65,31 +65,7 @@ describe('extractMessage', () => {
       const body = ''
       const expected = { title: 'feat: Test', body: '', full: 'feat: Test' }
 
-      expect(extractMessage(title, body)).toEqual(expected)
-    })
-
-    it('converts "feature" to "feat".', async () => {
-      const title = 'feature: Test'
-      const body = ''
-      const expected = { title: 'feat: Test', body: '', full: 'feat: Test' }
-
-      expect(extractMessage(title, body)).toEqual(expected)
-    })
-
-    it('ignores case in type keyword.', async () => {
-      const title = 'FiX: Test'
-      const body = ''
-      const expected = { title: 'fix: Test', body: '', full: 'fix: Test' }
-
-      expect(extractMessage(title, body)).toEqual(expected)
-    })
-
-    it('ignores spaces in title.', async () => {
-      const title = '  fix   :    Test   '
-      const body = ''
-      const expected = { title: 'fix: Test', body: '', full: 'fix: Test' }
-
-      expect(extractMessage(title, body)).toEqual(expected)
+      expect(extractMessage(title, body, [])).toEqual(expected)
     })
   })
 
@@ -107,7 +83,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('extracts from the start of the body.', async () => {
@@ -124,7 +100,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('extracts from the middle of the body.', async () => {
@@ -144,10 +120,10 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
-    it(`ignores case when searching for section.`, async () => {
+    it('ignores case when searching for section.', async () => {
       const body = [
         '## detAILS',
         'message 1',
@@ -158,10 +134,10 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
-    it(`allows singular when searching for section.`, async () => {
+    it('allows singular when searching for section.', async () => {
       const body = [
         '## Detail',
         'message 1'
@@ -170,7 +146,7 @@ describe('extractMessage', () => {
         'message 1'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('ignores # in the middle of the section.', async () => {
@@ -192,7 +168,7 @@ describe('extractMessage', () => {
         'message ### 123'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('trims the contents.', async () => {
@@ -214,7 +190,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
   })
 
@@ -232,7 +208,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('extracts from the start of the body.', async () => {
@@ -249,7 +225,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('extracts from the middle of the body.', async () => {
@@ -269,10 +245,10 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
-    it(`ignores case when searching for section.`, async () => {
+    it('ignores case when searching for section.', async () => {
       const body = [
         '## breaKING chaNGES',
         'message 1',
@@ -283,10 +259,10 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
-    it(`allows singular when searching for section.`, async () => {
+    it('allows singular when searching for section.', async () => {
       const body = [
         '## Breaking Change',
         'message 1'
@@ -295,10 +271,10 @@ describe('extractMessage', () => {
         'BREAKING CHANGES: message 1'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
-    it(`allows 'Breaking' as shortcut when searching for section.`, async () => {
+    it('allows \'Breaking\' as shortcut when searching for section.', async () => {
       const body = [
         '## Breaking',
         'message 1'
@@ -307,7 +283,7 @@ describe('extractMessage', () => {
         'BREAKING CHANGES: message 1'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('ignores # in the middle of the section.', async () => {
@@ -329,7 +305,7 @@ describe('extractMessage', () => {
         'message ### 123'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('trims the contents.', async () => {
@@ -351,7 +327,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
   })
 
@@ -369,7 +345,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('extracts from the start of the body.', async () => {
@@ -386,7 +362,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('extracts from the middle of the body.', async () => {
@@ -406,10 +382,10 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
-    it(`ignores case when searching for section.`, async () => {
+    it('ignores case when searching for section.', async () => {
       const body = [
         '## refeRENCES',
         'message 1',
@@ -420,10 +396,10 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
-    it(`allows 'Ref' as shortcut when searching for section.`, async () => {
+    it('allows \'Ref\' as shortcut when searching for section.', async () => {
       const body = [
         '## Ref',
         'message 1'
@@ -432,7 +408,7 @@ describe('extractMessage', () => {
         'message 1'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('ignores # in the middle of the section.', async () => {
@@ -454,7 +430,7 @@ describe('extractMessage', () => {
         'message ### 123'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('trims the contents.', async () => {
@@ -476,7 +452,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body)).toEqual({ title: '', body: expected, full: expected })
+      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
   })
 })

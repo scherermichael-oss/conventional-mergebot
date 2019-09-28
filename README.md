@@ -20,17 +20,11 @@ BREAKING CHANGES: You must update the configuration.
 #1234
 ```
 
-The first line will be taken from the `title` of the pull request. The following prefixes are recognized:
+The first line will be taken from the `title` of the pull request.
 
-- `feat`
+The description of the pull request (i.e. first comment) may contain several sections that will be added to the commit message.
 
-    This is used for new features. A new minor version will be released.
-
-- `fix`
-
-    This is used for bugfixes. A new patch version will be released.
-
-For the rest of the commit message, the description of the pull request (i.e. first comment) is searched for the `# Details` heading:
+Use section `# Details` for additional information:
 
 ```
 # Details
@@ -38,7 +32,7 @@ For the rest of the commit message, the description of the pull request (i.e. fi
 The new feature is awesome!
 ```
 
-You can also add a section `# Breaking Changes` to trigger a major release:
+To trigger a major release, add section `# Breaking Changes` with a description of the changes:
 
 ```
 # Breaking Changes
@@ -46,7 +40,7 @@ You can also add a section `# Breaking Changes` to trigger a major release:
 You must update the configuration.
 ```
 
-Issues can be listed in then`# References` section:
+List related issues in section `# References`:
 
 ```
 # References
@@ -54,12 +48,12 @@ Issues can be listed in then`# References` section:
 #1234
 ```
 
-For the sample commit message given above, the complete description might look like:
+For the sample commit message given above, the complete pull request description might look like:
 
 ```
 # Internal Information
 
-This text will be excluded the commit message.
+This text will be excluded from the commit message.
 
 # Details
 
@@ -75,20 +69,32 @@ You must update the configuration.
 
 # More Internal Information
 
-This text will be excluded the commit message, too.
+This text will be excluded from the commit message, too.
 ```
 
-The level of the headings does not matter. You can increase it if you prefer smaller text.
+The level of the headings does not matter. You can increase it if you prefer a smaller text size.
 
 ### Merging
 
-Unfortunately, you cannot use the `Merge` button with this bot. To create the custom merge commit, you must create a new comment with the merge command:
+Unfortunately, you cannot use the `Merge` button with this bot. To create the custom merge commit, create a new comment with the merge command:
 
 ```
 /merge
 ```
 
-All previous commits are squashed and the merge is triggered. If any information is still missing, a new comment with instructions is created.
+All commits are squashed and merged using a conventional commit message. If it is not possible to create such a message, the standard message is used.
+
+### Assigning reviewers
+
+You can define rules to automatically request reviews from users or teams based on the topics and labels set for the pull request.
+
+The rules are provided via environment variables `REVIEW_USERS_RULES` and `REVIEW_TEAMS_RULES`.
+
+Example:
+
+```bash
+REVIEW_TEAMS_RULES = "documentation,release/major=+docs-team documentation,release/minor=-docs-team documentation=-docs-team"
+```
 
 ## Deployment
 
@@ -96,14 +102,29 @@ This application is build using the [Probot framework](https://probot.github.io)
 
 ### Serverless
 
-You can use [serverless](https://serverless.com) to deploy the application. The configuration for AWS Lambda is already included. You must only edit the file `config/config.dev.json.sample`, remove its suffix `.sample`, and store the private key created by GitHub in the root folder as `private-key.pem`.
+You can use [serverless](https://serverless.com) to deploy the application. The configuration for AWS Lambda is already included. You must only update the file `config/config.dev.json.sample`, remove its suffix `.sample`, and store the private key created by GitHub in the root folder as `private-key.pem`.
 
-## Configuration
+### Environment variables
 
-Besides the environment variables needed by Probot, you can define the following variable:
+- `COMMIT_CONFIG`: Config for semantic release analyzer
 
-- `ALLOW_MANUAL_MERGE`
+    Config used by default:
 
-    If set to `true` (the default) the commit status will always be `success`.
+    ```
+    {
+      "preset": "angular",
+      "releaseRules": [
+        { "type": "chore", "release": "patch" }
+      ],
+      "parserOpts": {
+        "noteKeywords": ["BREAKING CHANGES"]
+      }
+    }
+    ```
 
-    If set to `false`, it will be `error` if not enough information can be found to build a commit message, or `pending` otherwise. So, the merge button will never be green in order to remind you to use the `/merge` command.
+- `LABEL_PREFIX`: Prefix for all created labels
+- `LABEL_SUFFIX_MAJOR`: Suffix of label for major release
+- `LABEL_SUFFIX_MINOR`: Suffix of label for minor release
+- `LABEL_SUFFIX_PATCH`: Suffix of label for patch release
+- `REVIEW_USERS_RULES`: Rule for requesting reviews from users (see [Assigning reviewers](#assigning-reviewers))
+- `REVIEW_TEAMS_RULES`: Rule for requesting reviews from teams (see [Assigning reviewers](#assigning-reviewers))
