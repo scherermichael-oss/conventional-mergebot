@@ -11,7 +11,7 @@ provider:
   stackTags:
     Business Unit: COM
   stage: ${opt:stage, 'dev'}
-  timeout: 15
+  timeout: 120
 
 functions:
   probot:
