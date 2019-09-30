@@ -3,5 +3,6 @@
   "GITHUB_CLIENT_ID": "example-github-client-id",
   "GITHUB_CLIENT_SECRET": "example-github-client-secret",
   "REVIEW_TEAMS_RULES": "my-topic,release/feat=+my-team my-topic,release/fix=+my-team my-topic=-my-team",
-  "WEBHOOK_SECRET": "example-webhook-secret"
+  "WEBHOOK_SECRET": "example-webhook-secret",
+  "memorySize": 256
 }
