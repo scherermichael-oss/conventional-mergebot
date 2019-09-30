@@ -67,30 +67,6 @@ describe('extractMessage', () => {
 
       expect(extractMessage(title, body, [])).toEqual(expected)
     })
-
-    it('converts "feature" to "feat".', async () => {
-      const title = 'feature: Test'
-      const body = ''
-      const expected = { title: 'feat: Test', body: '', full: 'feat: Test' }
-
-      expect(extractMessage(title, body, [])).toEqual(expected)
-    })
-
-    it('ignores case in type keyword.', async () => {
-      const title = 'FiX: Test'
-      const body = ''
-      const expected = { title: 'fix: Test', body: '', full: 'fix: Test' }
-
-      expect(extractMessage(title, body, [])).toEqual(expected)
-    })
-
-    it('ignores spaces in title.', async () => {
-      const title = '  fix   :    Test   '
-      const body = ''
-      const expected = { title: 'fix: Test', body: '', full: 'fix: Test' }
-
-      expect(extractMessage(title, body, [])).toEqual(expected)
-    })
   })
 
   describe('details', () => {
