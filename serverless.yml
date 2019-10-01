@@ -11,7 +11,8 @@ provider:
   stackTags:
     Business Unit: COM
   stage: ${opt:stage, 'dev'}
-  timeout: 120
+  # Set to maximum timeout for API Gateway functions
+  timeout: 30
   memorySize: ${file(config/config.${self:provider.stage}.json):memorySize}
 
 functions:
