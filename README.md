@@ -128,3 +128,4 @@ You can use [serverless](https://serverless.com) to deploy the application. The 
 - `LABEL_SUFFIX_PATCH`: Suffix of label for patch release
 - `REVIEW_USERS_RULES`: Rule for requesting reviews from users (see [Assigning reviewers](#assigning-reviewers))
 - `REVIEW_TEAMS_RULES`: Rule for requesting reviews from teams (see [Assigning reviewers](#assigning-reviewers))
+- `AUTOMERGE_BRANCHES`: Comma-separated list of branch names that will be merged automatically if all checks are ok
