@@ -129,3 +129,5 @@ You can use [serverless](https://serverless.com) to deploy the application. The 
 - `REVIEW_USERS_RULES`: Rule for requesting reviews from users (see [Assigning reviewers](#assigning-reviewers))
 - `REVIEW_TEAMS_RULES`: Rule for requesting reviews from teams (see [Assigning reviewers](#assigning-reviewers))
 - `AUTOMERGE_BRANCHES`: Comma-separated list of branch names that will be merged automatically if all checks are ok
+- `AUTOMERGE_LABEL`: Label for branches that will be merged automatically
+- `WIP_LABEL`: Label for unfinished branches that must not be merged
