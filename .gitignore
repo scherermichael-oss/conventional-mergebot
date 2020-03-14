@@ -1,5 +1,6 @@
 .env
 .serverless/
 config/config.*json
+keys/
 node_modules/
 private-key.pem

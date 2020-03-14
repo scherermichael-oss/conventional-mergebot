@@ -1,5 +1,7 @@
 'use strict'
 
+const handleCheck = require('./lib/handleCheck')
+const handleCommitStatus = require('./lib/handleCommitStatus')
 const handleComment = require('./lib/handleComment')
 const handlePullRequestChange = require('./lib/handlePullRequestChange')
 
@@ -14,6 +16,13 @@ const probotPlugin = (robot) => {
   robot.on([
     'issue_comment.created'
   ], handleComment)
+  robot.on([
+    'check_run.completed',
+    'check_suite.completed'
+  ], handleCheck)
+  robot.on([
+    'status'
+  ], handleCommitStatus)
 }
 
 module.exports = probotPlugin

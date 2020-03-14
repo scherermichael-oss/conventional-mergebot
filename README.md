@@ -20,17 +20,7 @@ BREAKING CHANGES: You must update the configuration.
 #1234
 ```
 
-The first line will be taken from the `title` of the pull request. The following prefixes are recognized:
-
-- `feat`
-
-    This is used for new features. A new minor version will be released.
-
-- `fix`
-
-    This is used for bugfixes. A new patch version will be released.
-
-Instead of using a prefix in the title, you can also add a label to the pull request that indicates the type. Enable this feature by setting the environmental variables `FEATURE_LABEL` and `BUGFIX_LABEL`. You can still add a prefix to the title. In this case, the corresponding label is assigned to the pull request.
+The first line will be taken from the `title` of the pull request.
 
 The description of the pull request (i.e. first comment) may contain several sections that will be added to the commit message.
 
@@ -92,7 +82,19 @@ Unfortunately, you cannot use the `Merge` button with this bot. To create the cu
 /merge
 ```
 
-All commits are squashed and merged using the custom commit message. If any information is missing, a new comment with instructions is created.
+All commits are squashed and merged using a conventional commit message. If it is not possible to create such a message, the standard message is used.
+
+### Assigning reviewers
+
+You can define rules to automatically request reviews from users or teams based on the topics and labels set for the pull request.
+
+The rules are provided via environment variables `REVIEW_USERS_RULES` and `REVIEW_TEAMS_RULES`.
+
+Example:
+
+```bash
+REVIEW_TEAMS_RULES = "documentation,release/major=+docs-team documentation,release/minor=-docs-team documentation=-docs-team"
+```
 
 ## Deployment
 
@@ -102,20 +104,30 @@ This application is build using the [Probot framework](https://probot.github.io)
 
 You can use [serverless](https://serverless.com) to deploy the application. The configuration for AWS Lambda is already included. You must only update the file `config/config.dev.json.sample`, remove its suffix `.sample`, and store the private key created by GitHub in the root folder as `private-key.pem`.
 
-## Configuration
+### Environment variables
 
-Besides the environment variables needed by Probot, you can define the following variables:
+- `COMMIT_CONFIG`: Config for semantic release analyzer
 
-- `ALLOW_MANUAL_MERGE`
+    Config used by default:
 
-    If set to `true` (the default) the commit check will always return `success`.
+    ```
+    {
+      "preset": "angular",
+      "releaseRules": [
+        { "type": "chore", "release": "patch" }
+      ],
+      "parserOpts": {
+        "noteKeywords": ["BREAKING CHANGES"]
+      }
+    }
+    ```
 
-    If set to `false`, it will be `error` if not enough information can be found to build a commit message, or `pending` otherwise. So, the merge button will never be green in order to remind you to use the `/merge` command.
-
-- `FEATURE_LABEL`
-
-    Name of the label that indicates a feature release.
-
-- `BUGFIX_LABEL`
-
-    Name of the label that indicates a bugfix release.
+- `LABEL_PREFIX`: Prefix for all created labels
+- `LABEL_SUFFIX_MAJOR`: Suffix of label for major release
+- `LABEL_SUFFIX_MINOR`: Suffix of label for minor release
+- `LABEL_SUFFIX_PATCH`: Suffix of label for patch release
+- `REVIEW_USERS_RULES`: Rule for requesting reviews from users (see [Assigning reviewers](#assigning-reviewers))
+- `REVIEW_TEAMS_RULES`: Rule for requesting reviews from teams (see [Assigning reviewers](#assigning-reviewers))
+- `AUTOMERGE_BRANCHES`: Comma-separated list of branch names that will be merged automatically if all checks are ok
+- `AUTOMERGE_LABEL`: Label for branches that will be merged automatically
+- `WIP_LABEL`: Label for unfinished branches that must not be merged

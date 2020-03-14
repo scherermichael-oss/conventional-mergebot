@@ -1,9 +1,19 @@
 service: conventional-mergebot
 
+plugins:
+  - serverless-offline
+
 provider:
   name: aws
-  logRetentionInDays: 7
-  runtime: nodejs8.10
+  logRetentionInDays: 1
+  profile: serverless
+  runtime: nodejs12.x
+  stackTags:
+    Business Unit: COM
+  stage: ${opt:stage, 'dev'}
+  # Set to maximum timeout for API Gateway functions
+  timeout: 30
+  memorySize: ${file(config/config.${self:provider.stage}.json):memorySize}
 
 functions:
   probot:
@@ -12,8 +22,8 @@ functions:
     environment:
       WEBHOOK_SECRET: ${file(config/config.${self:provider.stage}.json):WEBHOOK_SECRET}
       APP_ID: ${file(config/config.${self:provider.stage}.json):APP_ID}
-      ALLOW_MANUAL_MERGE: 'true'
-
+      PRIVATE_KEY_PATH: keys/private-key.${self:provider.stage}.pem
+      REVIEW_TEAMS_RULES: ${file(config/config.${self:provider.stage}.json):REVIEW_TEAMS_RULES}
     events:
       - http:
          path: /

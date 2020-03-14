@@ -1,6 +1,9 @@
 {
-  "APP_ID": 9999,
+  "APP_ID": 1234,
   "GITHUB_CLIENT_ID": "example-github-client-id",
   "GITHUB_CLIENT_SECRET": "example-github-client-secret",
-  "WEBHOOK_SECRET": "example-webhook-secret"
+  "REVIEW_TEAMS_RULES": "my-topic,release/feat=+my-team my-topic,release/fix=+my-team my-topic=-my-team",
+  "AUTOMERGE_BRANCHES": "branch1,branch2",
+  "WEBHOOK_SECRET": "example-webhook-secret",
+  "memorySize": 256
 }
