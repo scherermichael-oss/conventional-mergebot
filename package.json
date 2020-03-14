@@ -37,17 +37,17 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@probot/serverless-lambda": "0.3.0",
-    "@semantic-release/commit-analyzer": "6.3.0",
+    "@probot/serverless-lambda": "0.5.0",
+    "@semantic-release/commit-analyzer": "8.0.1",
     "debug": "4.1.1",
-    "getenv": "0.7.0",
+    "getenv": "1.0.0",
     "lodash": "4.17.15",
-    "probot": "9.5.0",
-    "serverless": "1.53.0"
+    "probot": "9.10.1",
+    "serverless": "1.66.0"
   },
   "devDependencies": {
-    "jest": "24.9.0",
-    "serverless-offline": "5.11.0",
+    "jest": "25.1.0",
+    "serverless-offline": "5.12.1",
     "standard": "14.3.1"
   },
   "jest": {
