@@ -1,4 +1,4 @@
-const updateReviewers = require('../../../lib/updateReviewers')
+const updateReviewers = require('../../../../lib/handlers/pullRequestChange/updateReviewers')
 
 let topics
 let labels

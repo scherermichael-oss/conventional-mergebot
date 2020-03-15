@@ -1,9 +1,9 @@
 let mergeCalled
-jest.doMock('../../../lib/merge', () => {
+jest.doMock('../../../../lib/merge', () => {
   return async () => { mergeCalled = true }
 })
 
-const handleComment = require('../../../lib/handleComment')
+const handleComment = require('../../../../lib/handlers/comment')
 
 const contextTemplate = {
   payload: {
