@@ -4,11 +4,9 @@ Squashes and merges your pull requests with a Conventional Commit message.
 
 ## Getting started
 
-This GitHub application uses the description of a pull request to create a merge commit with a custom message. Based on such a commit message, it is possible to automatically determine the correct [SemVer](https://semver.org) version of the next release.
+This GitHub application uses the title and description of a pull request to create a merge commit. Based on the commit message, it is possible to automatically determine the correct [SemVer](https://semver.org) version of the next release.
 
-It can set the status of the pull request to `error` if there is not enough information to build the commit message, if wished.
-
-The commit message follows the pattern defined by [Conventional Commits](https://conventionalcommits.org) as you can see in the following sample:
+The generated commit message follows the pattern defined by [Conventional Commits](https://conventionalcommits.org) as you can see in the following sample:
 
 ```
 feat: Introducing a cool feature.
@@ -53,7 +51,7 @@ For the sample commit message given above, the complete pull request description
 ```
 # Internal Information
 
-This text will be excluded from the commit message.
+This text will be excluded from the commit message because of the unknown heading.
 
 # Details
 
@@ -83,6 +81,8 @@ Unfortunately, you cannot use the `Merge` button with this bot. To create the cu
 ```
 
 All commits are squashed and merged using a conventional commit message. If it is not possible to create such a message, the standard message is used.
+
+You can define a [branch protection](https://help.github.com/en/github/administering-a-repository/configuring-protected-branches) to allow only this app to merge to the master branch. This disables the `Merge` button for all members.
 
 ### Assigning reviewers
 
@@ -122,12 +122,12 @@ You can use [serverless](https://serverless.com) to deploy the application. The 
     }
     ```
 
-- `LABEL_PREFIX`: Prefix for all created labels
+- `LABEL_PREFIX`: Prefix for all created release labels
 - `LABEL_SUFFIX_MAJOR`: Suffix of label for major release
 - `LABEL_SUFFIX_MINOR`: Suffix of label for minor release
 - `LABEL_SUFFIX_PATCH`: Suffix of label for patch release
-- `REVIEW_USERS_RULES`: Rule for requesting reviews from users (see [Assigning reviewers](#assigning-reviewers))
-- `REVIEW_TEAMS_RULES`: Rule for requesting reviews from teams (see [Assigning reviewers](#assigning-reviewers))
+- `REVIEW_USERS_RULES`: Space-separated list of rules for requesting reviews from users (see [Assigning reviewers](#assigning-reviewers))
+- `REVIEW_TEAMS_RULES`: Space-separated list of rules for requesting reviews from teams (see [Assigning reviewers](#assigning-reviewers))
 - `AUTOMERGE_BRANCHES`: Comma-separated list of branch names that will be merged automatically if all checks are ok
-- `AUTOMERGE_LABEL`: Label for branches that will be merged automatically
-- `WIP_LABEL`: Label for unfinished branches that must not be merged
+- `AUTOMERGE_LABEL`: Label created for branches that will be merged automatically
+- `WIP_LABEL`: Label created for unfinished branches that must not be merged

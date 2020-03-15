@@ -42,13 +42,13 @@
     "debug": "4.1.1",
     "getenv": "1.0.0",
     "lodash": "4.17.15",
-    "probot": "9.10.1",
+    "probot": "9.10.2",
     "serverless": "1.66.0"
   },
   "devDependencies": {
     "jest": "25.1.0",
     "serverless-offline": "5.12.1",
-    "standard": "14.3.1"
+    "standard": "14.3.3"
   },
   "jest": {
     "testRegex": "/test/unit/.+\\.test\\.js$",
