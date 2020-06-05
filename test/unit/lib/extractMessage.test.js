@@ -1,4 +1,4 @@
-const extractMessage = require('../../../lib/extractMessage')
+const extractMessage = require('../../../lib/merge/buildCommitMessage')
 
 describe('extractMessage', () => {
   it('is a function.', async () => {
