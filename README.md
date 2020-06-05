@@ -13,7 +13,7 @@ feat: Introducing a cool feature.
 
 The new feature is awesome!
 
-BREAKING CHANGES: You must update the configuration.
+BREAKING CHANGE: You must update the configuration.
 
 #1234
 ```
@@ -94,25 +94,15 @@ You can use [serverless](https://serverless.com) to deploy the application. The 
 
 ### Environment variables
 
-- `COMMIT_CONFIG`: Config for semantic release analyzer
+The bot works out of the box with sensible default settings which can be changed by environment variables.
+
+- `CONFIG`: Configuration for [semantic release analyzer](https://github.com/semantic-release/commit-analyzer#configuration)
 
     Defaults to:
 
     ```
     {
       "preset": "angular"
-    }
-    ```
-
-    ```
-    {
-      "preset": "angular",
-      "releaseRules": [
-        { "type": "chore", "release": "patch" }
-      ],
-      "parserOpts": {
-        "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES"]
-      }
     }
     ```
 
