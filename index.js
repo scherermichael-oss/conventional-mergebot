@@ -1,7 +1,6 @@
 'use strict'
 
-const check = require('./lib/handlers/check')
-const commitStatus = require('./lib/handlers/commitStatus')
+const status = require('./lib/handlers/status')
 const comment = require('./lib/handlers/comment')
 const pullRequestChange = require('./lib/handlers/pullRequestChange')
 
@@ -15,12 +14,8 @@ const probotPlugin = (robot) => {
     'issue_comment.created'
   ], comment)
   robot.on([
-    'check_run.completed',
-    'check_suite.completed'
-  ], check)
-  robot.on([
     'status'
-  ], commitStatus)
+  ], status)
 }
 
 module.exports = probotPlugin

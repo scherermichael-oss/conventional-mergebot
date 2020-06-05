@@ -17,7 +17,7 @@ describe('extractMessage', () => {
     const body = [
       '### Details',
       'details1',
-      '### Breaking Changes',
+      '### BREAKING CHANGE',
       'breaking1',
       '### References',
       'ref1'
@@ -28,7 +28,7 @@ describe('extractMessage', () => {
       body: [
         'details1',
         '',
-        'BREAKING CHANGES: breaking1',
+        'BREAKING CHANGE: breaking1',
         '',
         'ref1'
       ].join('\n'),
@@ -37,7 +37,7 @@ describe('extractMessage', () => {
         '',
         'details1',
         '',
-        'BREAKING CHANGES: breaking1',
+        'BREAKING CHANGE: breaking1',
         '',
         'ref1'
       ].join('\n')
@@ -48,7 +48,7 @@ describe('extractMessage', () => {
     const title = 'fix: Test'
     const body = [
       '### Details',
-      '### Breaking Changes',
+      '### BREAKING CHANGE',
       '### References'
     ].join('\n')
 
@@ -194,17 +194,17 @@ describe('extractMessage', () => {
     })
   })
 
-  describe('breaking changes', () => {
+  describe('BREAKING CHANGE', () => {
     it('extracts from the end of the body.', async () => {
       const body = [
         'line 1',
         'line 2',
-        '## Breaking Changes',
+        '## BREAKING CHANGE',
         'message 1',
         'message 2'
       ].join('\n')
       const expected = [
-        'BREAKING CHANGES: message 1',
+        'BREAKING CHANGE: message 1',
         'message 2'
       ].join('\n')
 
@@ -213,7 +213,7 @@ describe('extractMessage', () => {
 
     it('extracts from the start of the body.', async () => {
       const body = [
-        '## Breaking Changes',
+        '## BREAKING CHANGE',
         'message 1',
         'message 2',
         '## Other Section',
@@ -221,7 +221,7 @@ describe('extractMessage', () => {
         'line 2'
       ].join('\n')
       const expected = [
-        'BREAKING CHANGES: message 1',
+        'BREAKING CHANGE: message 1',
         'message 2'
       ].join('\n')
 
@@ -233,7 +233,7 @@ describe('extractMessage', () => {
         '## First Section',
         'line 1',
         'line 2',
-        '## Breaking Changes',
+        '## BREAKING CHANGE',
         'message 1',
         'message 2',
         '## Other Section',
@@ -241,7 +241,7 @@ describe('extractMessage', () => {
         'line 2'
       ].join('\n')
       const expected = [
-        'BREAKING CHANGES: message 1',
+        'BREAKING CHANGE: message 1',
         'message 2'
       ].join('\n')
 
@@ -250,12 +250,12 @@ describe('extractMessage', () => {
 
     it('ignores case when searching for section.', async () => {
       const body = [
-        '## breaKING chaNGES',
+        '## BREAKING CHANGE',
         'message 1',
         'message 2'
       ].join('\n')
       const expected = [
-        'BREAKING CHANGES: message 1',
+        'BREAKING CHANGE: message 1',
         'message 2'
       ].join('\n')
 
@@ -268,7 +268,7 @@ describe('extractMessage', () => {
         'message 1'
       ].join('\n')
       const expected = [
-        'BREAKING CHANGES: message 1'
+        'BREAKING CHANGE: message 1'
       ].join('\n')
 
       expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
@@ -280,7 +280,7 @@ describe('extractMessage', () => {
         'message 1'
       ].join('\n')
       const expected = [
-        'BREAKING CHANGES: message 1'
+        'BREAKING CHANGE: message 1'
       ].join('\n')
 
       expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
@@ -291,7 +291,7 @@ describe('extractMessage', () => {
         '## First Section',
         'line 1',
         'line 2',
-        '## Breaking Changes',
+        '## BREAKING CHANGE',
         'message #1',
         'message #2',
         'message ### 123',
@@ -300,7 +300,7 @@ describe('extractMessage', () => {
         'line 2'
       ].join('\n')
       const expected = [
-        'BREAKING CHANGES: message #1',
+        'BREAKING CHANGE: message #1',
         'message #2',
         'message ### 123'
       ].join('\n')
@@ -313,7 +313,7 @@ describe('extractMessage', () => {
         '## First Section',
         'line 1',
         'line 2',
-        '## Breaking Changes',
+        '## BREAKING CHANGE',
         '   ',
         'message 1',
         'message 2',
@@ -323,7 +323,7 @@ describe('extractMessage', () => {
         'line 2'
       ].join('\n')
       const expected = [
-        'BREAKING CHANGES: message 1',
+        'BREAKING CHANGE: message 1',
         'message 2'
       ].join('\n')
 

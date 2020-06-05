@@ -84,18 +84,6 @@ All commits are squashed and merged using a conventional commit message. If it i
 
 You can define a [branch protection](https://help.github.com/en/github/administering-a-repository/configuring-protected-branches) to allow only this app to merge to the master branch. This disables the `Merge` button for all members.
 
-### Assigning reviewers
-
-You can define rules to automatically request reviews from users or teams based on the topics and labels set for the pull request.
-
-The rules are provided via environment variables `REVIEW_USERS_RULES` and `REVIEW_TEAMS_RULES`.
-
-Example:
-
-```bash
-REVIEW_TEAMS_RULES = "documentation,release/major=+docs-team documentation,release/minor=-docs-team documentation=-docs-team"
-```
-
 ## Deployment
 
 This application is build using the [Probot framework](https://probot.github.io). The [documentation](https://probot.github.io/docs/deployment/) provides information about how to deploy it.
@@ -108,7 +96,7 @@ You can use [serverless](https://serverless.com) to deploy the application. The 
 
 - `COMMIT_CONFIG`: Config for semantic release analyzer
 
-    Config used by default:
+    Defaults to:
 
     ```
     {
@@ -132,6 +120,6 @@ You can use [serverless](https://serverless.com) to deploy the application. The 
 - `LABEL_SUFFIX_MAJOR` (defaults to `major`): Suffix of label for major release
 - `LABEL_SUFFIX_MINOR` (defaults to `minor`): Suffix of label for minor release
 - `LABEL_SUFFIX_PATCH` (defaults to `patch`): Suffix of label for patch release
-- `AUTOMERGE_BRANCHES`: Comma-separated list of branch names or regular expressions (surrounded with slashes) that will be merged automatically if all checks are ok
+- `AUTOMERGE_BRANCHES`: Comma-separated list of branch names that will be merged automatically if all checks are ok
 - `AUTOMERGE_LABEL` (defaults to `automatic-merge`): Label created for branches that will be merged automatically
 - `WIP_LABEL` (defaults to `work-in-progress`): Label created for unfinished branches that must not be merged
