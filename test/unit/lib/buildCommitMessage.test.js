@@ -1,15 +1,15 @@
-const extractMessage = require('../../../lib/merge/buildCommitMessage')
+const buildCommitMessage = require('../../../lib/buildCommitMessage')
 
-describe('extractMessage', () => {
+describe('buildCommitMessage', () => {
   it('is a function.', async () => {
-    expect(extractMessage).toBeInstanceOf(Function)
+    expect(buildCommitMessage).toBeInstanceOf(Function)
   })
 
   it('works with empty messages.', async () => {
     const title = ''
     const body = ''
 
-    expect(extractMessage(title, body, [])).toEqual({ title: '', body: '', full: '' })
+    expect(buildCommitMessage(title, body, [])).toEqual({ title: '', body: '', full: '' })
   })
 
   it('works with a complete messages.', async () => {
@@ -23,7 +23,7 @@ describe('extractMessage', () => {
       'ref1'
     ].join('\n')
 
-    expect(extractMessage(title, body, [])).toEqual({
+    expect(buildCommitMessage(title, body, [])).toEqual({
       title: 'fix: Test',
       body: [
         'details1',
@@ -52,7 +52,7 @@ describe('extractMessage', () => {
       '### References'
     ].join('\n')
 
-    expect(extractMessage(title, body, [])).toEqual({
+    expect(buildCommitMessage(title, body, [])).toEqual({
       title: 'fix: Test',
       body: '',
       full: 'fix: Test'
@@ -65,7 +65,7 @@ describe('extractMessage', () => {
       const body = ''
       const expected = { title: 'feat: Test', body: '', full: 'feat: Test' }
 
-      expect(extractMessage(title, body, [])).toEqual(expected)
+      expect(buildCommitMessage(title, body, [])).toEqual(expected)
     })
   })
 
@@ -83,7 +83,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('extracts from the start of the body.', async () => {
@@ -100,7 +100,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('extracts from the middle of the body.', async () => {
@@ -120,7 +120,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('ignores case when searching for section.', async () => {
@@ -134,7 +134,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('allows singular when searching for section.', async () => {
@@ -146,7 +146,7 @@ describe('extractMessage', () => {
         'message 1'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('ignores # in the middle of the section.', async () => {
@@ -168,7 +168,7 @@ describe('extractMessage', () => {
         'message ### 123'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('trims the contents.', async () => {
@@ -190,7 +190,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
   })
 
@@ -208,7 +208,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('extracts from the start of the body.', async () => {
@@ -225,7 +225,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('extracts from the middle of the body.', async () => {
@@ -245,7 +245,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('ignores case when searching for section.', async () => {
@@ -259,7 +259,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('allows singular when searching for section.', async () => {
@@ -271,7 +271,7 @@ describe('extractMessage', () => {
         'BREAKING CHANGE: message 1'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('allows \'Breaking\' as shortcut when searching for section.', async () => {
@@ -283,7 +283,7 @@ describe('extractMessage', () => {
         'BREAKING CHANGE: message 1'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('ignores # in the middle of the section.', async () => {
@@ -305,7 +305,7 @@ describe('extractMessage', () => {
         'message ### 123'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('trims the contents.', async () => {
@@ -327,7 +327,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
   })
 
@@ -345,7 +345,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('extracts from the start of the body.', async () => {
@@ -362,7 +362,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('extracts from the middle of the body.', async () => {
@@ -382,7 +382,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('ignores case when searching for section.', async () => {
@@ -396,7 +396,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('allows \'Ref\' as shortcut when searching for section.', async () => {
@@ -408,7 +408,7 @@ describe('extractMessage', () => {
         'message 1'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('ignores # in the middle of the section.', async () => {
@@ -430,7 +430,7 @@ describe('extractMessage', () => {
         'message ### 123'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
 
     it('trims the contents.', async () => {
@@ -452,7 +452,7 @@ describe('extractMessage', () => {
         'message 2'
       ].join('\n')
 
-      expect(extractMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
+      expect(buildCommitMessage('', body, [])).toEqual({ title: '', body: expected, full: expected })
     })
   })
 })
