@@ -112,22 +112,26 @@ You can use [serverless](https://serverless.com) to deploy the application. The 
 
     ```
     {
+      "preset": "angular"
+    }
+    ```
+
+    ```
+    {
       "preset": "angular",
       "releaseRules": [
         { "type": "chore", "release": "patch" }
       ],
       "parserOpts": {
-        "noteKeywords": ["BREAKING CHANGES"]
+        "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES"]
       }
     }
     ```
 
-- `LABEL_PREFIX`: Prefix for all created release labels
-- `LABEL_SUFFIX_MAJOR`: Suffix of label for major release
-- `LABEL_SUFFIX_MINOR`: Suffix of label for minor release
-- `LABEL_SUFFIX_PATCH`: Suffix of label for patch release
-- `REVIEW_USERS_RULES`: Space-separated list of rules for requesting reviews from users (see [Assigning reviewers](#assigning-reviewers))
-- `REVIEW_TEAMS_RULES`: Space-separated list of rules for requesting reviews from teams (see [Assigning reviewers](#assigning-reviewers))
-- `AUTOMERGE_BRANCHES`: Comma-separated list of branch names that will be merged automatically if all checks are ok
-- `AUTOMERGE_LABEL`: Label created for branches that will be merged automatically
-- `WIP_LABEL`: Label created for unfinished branches that must not be merged
+- `LABEL_PREFIX` (defaults to `release/`): Prefix for all created release labels
+- `LABEL_SUFFIX_MAJOR` (defaults to `major`): Suffix of label for major release
+- `LABEL_SUFFIX_MINOR` (defaults to `minor`): Suffix of label for minor release
+- `LABEL_SUFFIX_PATCH` (defaults to `patch`): Suffix of label for patch release
+- `AUTOMERGE_BRANCHES`: Comma-separated list of branch names or regular expressions (surrounded with slashes) that will be merged automatically if all checks are ok
+- `AUTOMERGE_LABEL` (defaults to `automatic-merge`): Label created for branches that will be merged automatically
+- `WIP_LABEL` (defaults to `work-in-progress`): Label created for unfinished branches that must not be merged
