@@ -6,7 +6,6 @@ plugins:
 provider:
   name: aws
   logRetentionInDays: 1
-  profile: serverless
   runtime: nodejs12.x
   stackTags:
     Business Unit: COM
@@ -23,7 +22,6 @@ functions:
       WEBHOOK_SECRET: ${file(config/config.${self:provider.stage}.json):WEBHOOK_SECRET}
       APP_ID: ${file(config/config.${self:provider.stage}.json):APP_ID}
       PRIVATE_KEY_PATH: keys/private-key.${self:provider.stage}.pem
-      REVIEW_TEAMS_RULES: ${file(config/config.${self:provider.stage}.json):REVIEW_TEAMS_RULES}
     events:
       - http:
           path: /
