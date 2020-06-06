@@ -22,7 +22,7 @@ BREAKING CHANGE: You must update the configuration.
 #1234
 ```
 
-Let's have a look how our pull request is used to create the message above:
+Let's have a look at how our pull request is used to create the above message:
 
 The first line of the commit message is taken from the `title` of the pull request.
 
