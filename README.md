@@ -121,7 +121,7 @@ The bot works out of the box with sensible default settings which can be changed
 | Variable             | Defaults                  | Description                                                                                                      |
 | -------------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | `AUTOMERGE_BRANCHES` |                           | Comma-separated list of branch names that will be merged automatically if all checks are ok                      |
-| `AUTOMERGE_LABEL`    | `automatic-merge`)        | Label created for branches that will be merged automatically by the bot                                          |
+| `AUTOMERGE_LABEL`    | `automatic-merge`         | Label created for branches that will be merged automatically by the bot                                          |
 | `CONFIG`             | `{ "preset": "angular" }` | Configuration for [semantic release analyzer](https://github.com/semantic-release/commit-analyzer#configuration) |
 | `LABEL_PREFIX`       | `release/`                | Prefix for all created release labels                                                                            |
 | `LABEL_SUFFIX_MAJOR` | `major`                   | Suffix of label for major release                                                                                |
