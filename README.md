@@ -1,6 +1,6 @@
 # conventional-mergebot
 
-Squashes and merges your pull requests with a Conventional Commit message.
+Squash and merge your pull requests with a Conventional Commit message.
 
 ## Getting started
 
@@ -20,7 +20,7 @@ BREAKING CHANGE: You must update the configuration.
 
 The first line will be taken from the `title` of the pull request.
 
-The description of the pull request (i.e. first comment) may contain several sections that will be added to the commit message.
+The description of the pull request may contain several sections that will be added to the commit message.
 
 Use section `# Details` for additional information:
 
@@ -96,7 +96,7 @@ As long as you are still working on a pull request, you can prefix its title wit
 
 The bot creates some labels to inform users about the state of the pull request:
 
-- The type of release that will be triggered, e.g. `release/major`. The label consists of a prefix and the type of release.
+- The type of release that will be triggered, e.g. `release/major`. The label consists of a prefix and the type.
 
 - The keyword used to specify the kind of changes, e.g. `release/feat`. The label also consists of the prefix and the keyword itself.
 
@@ -118,27 +118,13 @@ You can use [serverless](https://serverless.com) to deploy the application. The 
 
 The bot works out of the box with sensible default settings which can be changed by environment variables.
 
-- `AUTOMERGE_BRANCHES`: Comma-separated list of branch names that will be merged automatically if all checks are ok
-
-- `AUTOMERGE_LABEL` (defaults to `automatic-merge`): Label created for branches that will be merged automatically by the bot
-
-- `CONFIG`: Configuration for [semantic release analyzer](https://github.com/semantic-release/commit-analyzer#configuration)
-
-    Defaults to:
-
-    ```
-    {
-      "preset": "angular"
-    }
-    ```
-
-- `LABEL_PREFIX` (defaults to `release/`): Prefix for all created release labels
-
-- `LABEL_SUFFIX_MAJOR` (defaults to `major`): Suffix of label for major release
-
-- `LABEL_SUFFIX_MINOR` (defaults to `minor`): Suffix of label for minor release
-
-- `LABEL_SUFFIX_PATCH` (defaults to `patch`): Suffix of label for patch release
-automatically
-
-- `WIP_LABEL` (defaults to `work-in-progress`): Label created for unfinished branches that must not be merged
+| Variable             | Defaults                  | Description                                                                                                      |
+| -------------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `AUTOMERGE_BRANCHES` |                           | Comma-separated list of branch names that will be merged automatically if all checks are ok                      |
+| `AUTOMERGE_LABEL`    | `automatic-merge`)        | Label created for branches that will be merged automatically by the bot                                          |
+| `CONFIG`             | `{ "preset": "angular" }` | Configuration for [semantic release analyzer](https://github.com/semantic-release/commit-analyzer#configuration) |
+| `LABEL_PREFIX`       | `release/`                | Prefix for all created release labels                                                                            |
+| `LABEL_SUFFIX_MAJOR` | `major`                   | Suffix of label for major release                                                                                |
+| `LABEL_SUFFIX_MINOR` | `minor`                   | Suffix of label for minor release                                                                                |
+| `LABEL_SUFFIX_PATCH` | `patch`                   | Suffix of label for patch release                                                                                |
+| `WIP_LABEL`          | `work-in-progress`        | Label created for unfinished branches that must not be merged                                                    |
