@@ -39,6 +39,3 @@ It is mainly a code cleanup to facilitate maintenance. Some features that did no
 
 Add CicleCI config ([9f5f1cd](https://github.com/scherermichael/conventional-mergebot/commit/9f5f1cd))
 
-
-
----
