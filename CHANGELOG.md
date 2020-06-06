@@ -32,8 +32,6 @@ It is mainly a code cleanup to facilitate maintenance. Some features that did no
 
 - Removed its own rather useless commit status
 
----
-
 ## 1.1.0 (2020-06-06)
 
 ### Features
