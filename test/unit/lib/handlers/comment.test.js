@@ -1,9 +1,19 @@
+'use strict'
+
+const _ = require('lodash')
+
 let mergeCalled
-jest.doMock('../../../lib/merge', () => {
+jest.doMock('../../../../lib/merge', () => {
   return async () => { mergeCalled = true }
 })
+jest.doMock('../../../../lib/buildResultMessage', () => {
+  return async () => { return '' }
+})
+jest.doMock('../../../../lib/tests/isWip', () => {
+  return () => { return false }
+})
 
-const handleComment = require('../../../lib/handleComment')
+const handleComment = require('../../../../lib/handlers/comment')
 
 const contextTemplate = {
   payload: {
@@ -17,6 +27,9 @@ const contextTemplate = {
   },
   repo: () => {},
   github: {
+    issues: {
+      createComment: () => { }
+    },
     pulls: {
       get: () => {
         return {
@@ -33,7 +46,7 @@ let context
 describe('handleComment', () => {
   beforeEach(() => { // eslint-disable-line
     mergeCalled = false
-    context = Object.assign({}, contextTemplate)
+    context = _.cloneDeep(contextTemplate)
   })
 
   it('is a function.', async () => {
