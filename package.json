@@ -1,6 +1,6 @@
 {
   "name": "conventional-mergebot",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Squashes and merges pull requests with a Conventional Commit message.",
   "author": {
     "name": "Michael Scherer",
@@ -47,7 +47,7 @@
     "serverless": "1.72.0"
   },
   "devDependencies": {
-    "@sealsystems/semantic-release": "4.1.0",
+    "@sealsystems/semantic-release": "4.1.2",
     "jest": "26.0.1",
     "serverless-offline": "6.4.0",
     "standard": "14.3.4"
