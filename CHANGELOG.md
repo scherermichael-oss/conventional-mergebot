@@ -3,18 +3,18 @@
 ### Features
 
 
-#### Streamline codebase ([9f39507](https://github.com/scherermichael/conventional-mergebot/commit/9f39507))
+Streamline codebase ([9f39507](https://github.com/scherermichael/conventional-mergebot/commit/9f39507))
 
 It is mainly a code cleanup to facilitate maintenance. Some features that did not fit well have been removed.
 
 
 ### BREAKING CHANGES
 
-#### - Renamed environment variable `COMMIT_CONFIG` to `CONFIG`
+- Renamed environment variable `COMMIT_CONFIG` to `CONFIG`
 
 - Switched to stock `angular` commit-analyzer config (https://github.com/semantic-release/commit-analyzer#configuration)
 
-    To restore the original behaviour, set `CONFIG`to:
+    To restore the original behaviour, set `CONFIG` to:
 
     ```
     {
@@ -39,7 +39,7 @@ It is mainly a code cleanup to facilitate maintenance. Some features that did no
 ### Features
 
 
-#### Add CicleCI config ([9f5f1cd](https://github.com/scherermichael/conventional-mergebot/commit/9f5f1cd))
+Add CicleCI config ([9f5f1cd](https://github.com/scherermichael/conventional-mergebot/commit/9f5f1cd))
 
 
 
