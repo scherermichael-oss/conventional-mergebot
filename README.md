@@ -4,18 +4,16 @@ Squashes and merges your pull requests with a Conventional Commit message.
 
 ## Getting started
 
-This GitHub application uses the description of a pull request to create a merge commit with a custom message. Based on such a commit message, it is possible to automatically determine the correct [SemVer](https://semver.org) version of the next release.
+This GitHub application uses the title and description of a pull request to create a merge commit. Based on the commit message, it is possible to automatically determine the correct [SemVer](https://semver.org) version of the next release.
 
-It can set the status of the pull request to `error` if there is not enough information to build the commit message, if wished.
-
-The commit message follows the pattern defined by [Conventional Commits](https://conventionalcommits.org) as you can see in the following sample:
+The generated commit message follows the pattern defined by [Conventional Commits](https://conventionalcommits.org) as you can see in the following sample:
 
 ```
 feat: Introducing a cool feature.
 
 The new feature is awesome!
 
-BREAKING CHANGES: You must update the configuration.
+BREAKING CHANGE: You must update the configuration.
 
 #1234
 ```
@@ -53,7 +51,7 @@ For the sample commit message given above, the complete pull request description
 ```
 # Internal Information
 
-This text will be excluded from the commit message.
+This text will be excluded from the commit message because of the unknown heading.
 
 # Details
 
@@ -74,7 +72,7 @@ This text will be excluded from the commit message, too.
 
 The level of the headings does not matter. You can increase it if you prefer a smaller text size.
 
-### Merging
+### Manual Merging
 
 Unfortunately, you cannot use the `Merge` button with this bot. To create the custom merge commit, create a new comment with the merge command:
 
@@ -84,17 +82,29 @@ Unfortunately, you cannot use the `Merge` button with this bot. To create the cu
 
 All commits are squashed and merged using a conventional commit message. If it is not possible to create such a message, the standard message is used.
 
-### Assigning reviewers
+You can define a [branch protection](https://help.github.com/en/github/administering-a-repository/configuring-protected-branches) to allow only this app to merge to the master branch. This disables the `Merge` button for all members.
 
-You can define rules to automatically request reviews from users or teams based on the topics and labels set for the pull request.
+### Automatic merging
 
-The rules are provided via environment variables `REVIEW_USERS_RULES` and `REVIEW_TEAMS_RULES`.
+By setting the environment variable `AUTOMERGE_BRANCHES`, you can specify branches that will be automatically merged once all checks have been successfully completed.
 
-Example:
+### Preventing accidental merges
 
-```bash
-REVIEW_TEAMS_RULES = "documentation,release/major=+docs-team documentation,release/minor=-docs-team documentation=-docs-team"
-```
+As long as you are still working on a pull request, you can prefix its title with `WIP:`. This prevents the bot from performing a manual or automatic merge.
+
+### Labels
+
+The bot creates some labels to inform users about the state of the pull request:
+
+- The type of release that will be triggered, e.g. `release/major`. The label consists of a prefix and the type of release.
+
+- The keyword used to specify the kind of changes, e.g. `release/feat`. The label also consists of the prefix and the keyword itself.
+
+- Pull requests that must not be merged since they are still being worked on are labeled with `work-in-progress`.
+
+- If the branch of a pull request is included in the list of branches to be merged automatically, the label `automatic-merge` is displayed.
+
+The text of each label can be changed by setting the appropriate [environment variables](#environment-variables).
 
 ## Deployment
 
@@ -106,28 +116,29 @@ You can use [serverless](https://serverless.com) to deploy the application. The 
 
 ### Environment variables
 
-- `COMMIT_CONFIG`: Config for semantic release analyzer
+The bot works out of the box with sensible default settings which can be changed by environment variables.
 
-    Config used by default:
+- `AUTOMERGE_BRANCHES`: Comma-separated list of branch names that will be merged automatically if all checks are ok
+
+- `AUTOMERGE_LABEL` (defaults to `automatic-merge`): Label created for branches that will be merged automatically by the bot
+
+- `CONFIG`: Configuration for [semantic release analyzer](https://github.com/semantic-release/commit-analyzer#configuration)
+
+    Defaults to:
 
     ```
     {
-      "preset": "angular",
-      "releaseRules": [
-        { "type": "chore", "release": "patch" }
-      ],
-      "parserOpts": {
-        "noteKeywords": ["BREAKING CHANGES"]
-      }
+      "preset": "angular"
     }
     ```
 
-- `LABEL_PREFIX`: Prefix for all created labels
-- `LABEL_SUFFIX_MAJOR`: Suffix of label for major release
-- `LABEL_SUFFIX_MINOR`: Suffix of label for minor release
-- `LABEL_SUFFIX_PATCH`: Suffix of label for patch release
-- `REVIEW_USERS_RULES`: Rule for requesting reviews from users (see [Assigning reviewers](#assigning-reviewers))
-- `REVIEW_TEAMS_RULES`: Rule for requesting reviews from teams (see [Assigning reviewers](#assigning-reviewers))
-- `AUTOMERGE_BRANCHES`: Comma-separated list of branch names that will be merged automatically if all checks are ok
-- `AUTOMERGE_LABEL`: Label for branches that will be merged automatically
-- `WIP_LABEL`: Label for unfinished branches that must not be merged
+- `LABEL_PREFIX` (defaults to `release/`): Prefix for all created release labels
+
+- `LABEL_SUFFIX_MAJOR` (defaults to `major`): Suffix of label for major release
+
+- `LABEL_SUFFIX_MINOR` (defaults to `minor`): Suffix of label for minor release
+
+- `LABEL_SUFFIX_PATCH` (defaults to `patch`): Suffix of label for patch release
+automatically
+
+- `WIP_LABEL` (defaults to `work-in-progress`): Label created for unfinished branches that must not be merged
