@@ -19,7 +19,8 @@
     "start": "probot run ./index.js",
     "pretest": "npm run lint",
     "test": "jest",
-    "test:watch": "jest . --watch"
+    "test:watch": "jest . --watch",
+    "release": "release"
   },
   "standard": {
     "globals": [
@@ -42,16 +43,20 @@
     "debug": "4.1.1",
     "getenv": "1.0.0",
     "lodash": "4.17.15",
-    "probot": "9.10.1",
-    "serverless": "1.66.0"
+    "probot": "9.11.5",
+    "serverless": "1.72.0"
   },
   "devDependencies": {
-    "jest": "25.1.0",
-    "serverless-offline": "5.12.1",
-    "standard": "14.3.1"
+    "@sealsystems/semantic-release": "4.1.0",
+    "jest": "26.0.1",
+    "serverless-offline": "6.4.0",
+    "standard": "14.3.4"
   },
   "jest": {
     "testRegex": "/test/unit/.+\\.test\\.js$",
     "testURL": "http://localhost/"
+  },
+  "release": {
+    "extends": "@sealsystems/semantic-release/node-binary"
   }
 }
