@@ -4,11 +4,11 @@ Squash and merge your pull requests with a Conventional Commit message.
 
 ## Getting started
 
-[Conventional Commits](https://conventionalcommits.org) are great to automate releases without worrying about versions and changelogs. [Tools as Semantic Release](https://github.com/semantic-release/semantic-release) use the contents of commit message to get all needed information. But creating these commit messages is not easy since you have to strictly follow the specified convention.
+[Conventional Commits](https://conventionalcommits.org) are great to automate releases without worrying about versions and changelogs. Tools such as [Semantic Release](https://github.com/semantic-release/semantic-release) use the contents of commit message to get all necessary information. But creating these commit messages is not easy, because you have to adhere strictly to the specified convention.
 
-This GitHub application uses the title and description of a pull request to create an appropriate merge commit for you. This way, you can use the comfortable editor on GitHub to compose it.
+This GitHub application uses the title and description of a pull request to create an proper merge commit for you. This way, you can use the user-friendly editor on GitHub to compose it.
 
-> Hint: [Pull request templates](https://help.github.com/en/github/building-a-strong-community/about-issue-and-pull-request-templates#pull-request-templates) allow even new contributors to easily create correct messages.
+> Hint: [Pull request templates](https://help.github.com/en/github/building-a-strong-community/about-issue-and-pull-request-templates#pull-request-templates) allow new contributors to easily create correct messages.
 
 Here you can see an example of a conventional commit message:
 
