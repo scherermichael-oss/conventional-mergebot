@@ -4,9 +4,13 @@ Squash and merge your pull requests with a Conventional Commit message.
 
 ## Getting started
 
-This GitHub application uses the title and description of a pull request to create a merge commit. Based on the commit message, it is possible to automatically determine the correct [SemVer](https://semver.org) version of the next release.
+[Conventional Commits](https://conventionalcommits.org) are great to automate releases without worrying about versions and changelogs. [Tools as Semantic Release](https://github.com/semantic-release/semantic-release) use the contents of commit message to get all needed information. But creating these commit messages is not easy since you have to strictly follow the specified convention.
 
-The generated commit message follows the pattern defined by [Conventional Commits](https://conventionalcommits.org) as you can see in the following sample:
+This GitHub application uses the title and description of a pull request to create an appropriate merge commit for you. This way, you can use the comfortable editor on GitHub to compose it.
+
+> Hint: [Pull request templates](https://help.github.com/en/github/building-a-strong-community/about-issue-and-pull-request-templates#pull-request-templates) allow even new contributors to easily create correct messages.
+
+Here you can see an example of a conventional commit message:
 
 ```
 feat: Introducing a cool feature.
@@ -18,9 +22,11 @@ BREAKING CHANGE: You must update the configuration.
 #1234
 ```
 
-The first line will be taken from the `title` of the pull request.
+Let's have a look how our pull request is used to create the message above:
 
-The description of the pull request may contain several sections that will be added to the commit message.
+The first line of the commit message is taken from the `title` of the pull request.
+
+The description of the pull request may contain several sections that are added to the commit message.
 
 Use section `# Details` for additional information:
 
@@ -82,7 +88,7 @@ Unfortunately, you cannot use the `Merge` button with this bot. To create the cu
 
 All commits are squashed and merged using a conventional commit message. If it is not possible to create such a message, the standard message is used.
 
-You can define a [branch protection](https://help.github.com/en/github/administering-a-repository/configuring-protected-branches) to allow only this app to merge to the master branch. This disables the `Merge` button for all members.
+> Hint: You can define a [branch protection](https://help.github.com/en/github/administering-a-repository/configuring-protected-branches) to allow only this app to merge to the master branch. This disables the `Merge` button for all members.
 
 ### Automatic merging
 
@@ -123,7 +129,7 @@ The bot works out of the box with sensible default settings which can be changed
 | `AUTOMERGE_BRANCHES` |                           | Comma-separated list of branch names that will be merged automatically if all checks are ok                      |
 | `AUTOMERGE_LABEL`    | `automatic-merge`         | Label created for branches that will be merged automatically by the bot                                          |
 | `CONFIG`             | `{ "preset": "angular" }` | Configuration for [semantic release analyzer](https://github.com/semantic-release/commit-analyzer#configuration) |
-| `LABEL_PREFIX`       | `release/`                | Prefix for all created release labels                                                                            |
+| `LABEL_PREFIX`       | `release/`                | Prefix for all created release labels; only labels created by the bot may use this prefix                        |
 | `LABEL_SUFFIX_MAJOR` | `major`                   | Suffix of label for major release                                                                                |
 | `LABEL_SUFFIX_MINOR` | `minor`                   | Suffix of label for minor release                                                                                |
 | `LABEL_SUFFIX_PATCH` | `patch`                   | Suffix of label for patch release                                                                                |
