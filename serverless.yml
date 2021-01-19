@@ -11,7 +11,7 @@ provider:
     Business Unit: COM
   stage: ${opt:stage, 'dev'}
   # Set to maximum timeout for API Gateway functions
-  timeout: 60
+  timeout: 30
   memorySize: ${file(config/config.${self:provider.stage}.json):memorySize}
 
 functions:
@@ -22,6 +22,9 @@ functions:
       WEBHOOK_SECRET: ${file(config/config.${self:provider.stage}.json):WEBHOOK_SECRET}
       APP_ID: ${file(config/config.${self:provider.stage}.json):APP_ID}
       PRIVATE_KEY_PATH: keys/private-key.${self:provider.stage}.pem
+      AUTOMERGE_BRANCHES: ${file(config/config.${self:provider.stage}.json):AUTOMERGE_BRANCHES}
+      CONFIG: ${file(config/config.${self:provider.stage}.json):CONFIG}
+      MAIN_BRANCH: ${file(config/config.${self:provider.stage}.json):MAIN_BRANCH}
     events:
       - http:
           path: /
