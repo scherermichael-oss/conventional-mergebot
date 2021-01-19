@@ -7,8 +7,6 @@ provider:
   name: aws
   logRetentionInDays: 1
   runtime: nodejs12.x
-  stackTags:
-    Business Unit: COM
   stage: ${opt:stage, 'dev'}
   # Set to maximum timeout for API Gateway functions
   timeout: 60
