@@ -2,7 +2,9 @@
   "APP_ID": 0000,
   "GITHUB_CLIENT_ID": "client-id-by-github",
   "GITHUB_CLIENT_SECRET": "client-secret-by-github",
-  "AUTOMERGE_BRANCHES": "branch1,branch2",
   "WEBHOOK_SECRET": "example-webhook-secret",
-  "memorySize": 256
+  "memorySize": 256,
+  "AUTOMERGE_BRANCHES": "branch1,branch2",
+  "CONFIG": "{\"preset\":\"angular\"}",
+  "MAIN_BRANCH": "main"
 }
