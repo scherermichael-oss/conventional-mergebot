@@ -88,7 +88,7 @@ Unfortunately, you cannot use the `Merge` button with this bot. To create the cu
 
 All commits are squashed and merged using a conventional commit message. If it is not possible to create such a message, the standard message is used.
 
-> Hint: You can define a [branch protection](https://help.github.com/en/github/administering-a-repository/configuring-protected-branches) to allow only this app into merge to the master branch. This disables the `Merge` button for all members.
+> Hint: You can define a [branch protection](https://help.github.com/en/github/administering-a-repository/configuring-protected-branches) to allow only this app to merge into the master branch. This disables the `Merge` button for all members.
 
 ### Automatic merging
 
