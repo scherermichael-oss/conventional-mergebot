@@ -1,5 +1,5 @@
 {
-  "APP_ID": 0000,
+  "APP_ID": 1234,
   "GITHUB_CLIENT_ID": "client-id-by-github",
   "GITHUB_CLIENT_SECRET": "client-secret-by-github",
   "WEBHOOK_SECRET": "example-webhook-secret",
