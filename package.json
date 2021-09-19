@@ -44,6 +44,7 @@
     "getenv": "1.0.0",
     "lodash": "4.17.20",
     "probot": "^10.1.1",
+    "semver": "7.3.5",
     "serverless": "2.19.0"
   },
   "devDependencies": {

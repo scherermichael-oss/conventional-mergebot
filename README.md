@@ -124,14 +124,15 @@ You can use [serverless](https://serverless.com) to deploy the application. The 
 
 The bot works out of the box with sensible default settings which can be changed by environment variables.
 
-| Variable             | Defaults                  | Description                                                                                                      |
-|----------------------|---------------------------|------------------------------------------------------------------------------------------------------------------|
-| `AUTOMERGE_BRANCHES` |                           | Comma-separated list of branch names that will be merged automatically if all checks are ok                      |
-| `AUTOMERGE_LABEL`    | `automatic-merge`         | Label created for branches that will be merged automatically by the bot                                          |
-| `CONFIG`             | `{ "preset": "angular" }` | Configuration for [semantic release analyzer](https://github.com/semantic-release/commit-analyzer#configuration) |
-| `LABEL_PREFIX`       | `release/`                | Prefix for all created release labels; only labels created by the bot may use this prefix                        |
-| `LABEL_SUFFIX_MAJOR` | `major`                   | Suffix of label for major release                                                                                |
-| `LABEL_SUFFIX_MINOR` | `minor`                   | Suffix of label for minor release                                                                                |
-| `LABEL_SUFFIX_PATCH` | `patch`                   | Suffix of label for patch release                                                                                |
-| `MAIN_BRANCH`        | `main`                    | Name of the main branch of the repository                                                                        |
-| `WIP_LABEL`          | `work-in-progress`        | Label created for unfinished branches that must not be merged                                                    |
+| Variable                            | Defaults                                   | Description                                                                                                      |
+|-------------------------------------|--------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| `AUTOMERGE_BRANCHES`                |                                            | Comma-separated list of branch names that will be merged automatically if all checks are ok                      |
+| `AUTOMERGE_DEPENDABOT_UPDATE_TYPES` | `minor,preminor,patch,prepatch,prerelease` | Comma-separated list of update types that will be merged automatically if all checks are ok                      |
+| `AUTOMERGE_LABEL`                   | `automatic-merge`                          | Label created for branches that will be merged automatically by the bot                                          |
+| `CONFIG`                            | `{ "preset": "angular" }`                  | Configuration for [semantic release analyzer](https://github.com/semantic-release/commit-analyzer#configuration) |
+| `LABEL_PREFIX`                      | `release/`                                 | Prefix for all created release labels; only labels created by the bot may use this prefix                        |
+| `LABEL_SUFFIX_MAJOR`                | `major`                                    | Suffix of label for major release                                                                                |
+| `LABEL_SUFFIX_MINOR`                | `minor`                                    | Suffix of label for minor release                                                                                |
+| `LABEL_SUFFIX_PATCH`                | `patch`                                    | Suffix of label for patch release                                                                                |
+| `MAIN_BRANCH`                       | `main`                                     | Name of the main branch of the repository                                                                        |
+| `WIP_LABEL`                         | `work-in-progress`                         | Label created for unfinished branches that must not be merged                                                    |
