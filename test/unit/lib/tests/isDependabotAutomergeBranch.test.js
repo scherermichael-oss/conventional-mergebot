@@ -19,19 +19,27 @@ describe('isDependabotAutomergeBranch', () => {
   })
 
   it('recognizes patch updates by dependabot.', async () => {
-    expect(isDependabotAutomergeBranch(pr('chore(deps): bump url-parse from 1.5.1 to 1.5.3 in /.github/scripts', 'dependabot/test'))).toEqual(true)
+    expect(isDependabotAutomergeBranch(pr('chore(deps): bump @sealsystems/test-module from 1.5.1 to 1.5.3 in /.github/scripts', 'dependabot/test'))).toEqual(true)
   })
 
   it('works with more digits in version number.', async () => {
-    expect(isDependabotAutomergeBranch(pr('chore(deps): bump url-parse from 10.51.12 to 10.51.32 in /.github/scripts', 'dependabot/test'))).toEqual(true)
+    expect(isDependabotAutomergeBranch(pr('chore(deps): bump @sealsystems/test-module from 10.51.12 to 10.51.32 in /.github/scripts', 'dependabot/test'))).toEqual(true)
+  })
+
+  it('works without commit keyword.', async () => {
+    expect(isDependabotAutomergeBranch(pr('Bump @sealsystems/test-module from 10.51.12 to 10.51.32 in /.github/scripts', 'dependabot/test'))).toEqual(true)
   })
 
   it('recognizes minor updates by dependabot.', async () => {
-    expect(isDependabotAutomergeBranch(pr('chore(deps): bump url-parse from 1.5.1 to 1.6.1 in /.github/scripts', 'dependabot/test'))).toEqual(true)
+    expect(isDependabotAutomergeBranch(pr('chore(deps): bump @sealsystems/test-module from 1.5.1 to 1.6.1 in /.github/scripts', 'dependabot/test'))).toEqual(true)
   })
 
   it('ignores major updates by dependabot.', async () => {
-    expect(isDependabotAutomergeBranch(pr('chore(deps): bump url-parse from 1.5.1 to 2.5.1 in /.github/scripts', 'dependabot/test'))).toEqual(false)
+    expect(isDependabotAutomergeBranch(pr('chore(deps): bump @sealsystems/test-module from 1.5.1 to 2.5.1 in /.github/scripts', 'dependabot/test'))).toEqual(false)
+  })
+
+  it('ignores modules not matching the prefix.', async () => {
+    expect(isDependabotAutomergeBranch(pr('chore(deps): bump other-module from 1.5.1 to 2.5.1 in /.github/scripts', 'dependabot/test'))).toEqual(false)
   })
 
   it('ignores empty pr title.', async () => {
