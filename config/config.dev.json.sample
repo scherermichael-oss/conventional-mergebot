@@ -5,6 +5,8 @@
   "WEBHOOK_SECRET": "example-webhook-secret",
   "memorySize": 256,
   "AUTOMERGE_BRANCHES": "branch1,branch2",
+  "AUTOMERGE_DEPENDABOT_UPDATE_TYPES": "minor,preminor,patch,prepatch,prerelease",
+  "AUTOMERGE_DEPENDABOT_MODULE_PREFIX": "@myorg/",
   "CONFIG": "{\"preset\":\"angular\"}",
   "MAIN_BRANCH": "main"
 }
