@@ -39,18 +39,19 @@
   "license": "MIT",
   "dependencies": {
     "@probot/serverless-lambda": "1.0.2",
-    "@semantic-release/commit-analyzer": "8.0.1",
-    "debug": "4.3.1",
+    "@semantic-release/commit-analyzer": "9.0.1",
+    "debug": "4.3.2",
     "getenv": "1.0.0",
     "lodash": "4.17.21",
     "probot": "^10.1.1",
     "semver": "7.3.5",
-    "serverless": "2.19.0"
+    "serverless": "2.60.3"
   },
   "devDependencies": {
-    "@sealsystems/semantic-release": "4.3.2",
-    "jest": "26.6.3",
-    "serverless-offline": "6.8.0",
+    "@sealsystems/semantic-release": "4.3.7",
+    "jest": "27.2.4",
+    "nodeenv": "3.0.71",
+    "serverless-offline": "8.2.0",
     "standard": "16.0.3"
   },
   "jest": {

@@ -9,7 +9,7 @@ jest.doMock('../../../../lib/merge', () => {
 jest.doMock('../../../../lib/buildResultMessage', () => {
   return async () => { return '' }
 })
-jest.doMock('../../../../lib/tests/isWip', () => {
+jest.doMock('../../../../lib/checks/isWip', () => {
   return () => { return false }
 })
 
@@ -26,7 +26,7 @@ const contextTemplate = {
     }
   },
   repo: () => {},
-  github: {
+  octokit: {
     issues: {
       createComment: () => { }
     },
@@ -98,7 +98,7 @@ describe('handleComment', () => {
 
   it('do not merge closed pull requests.', async () => {
     context.payload.comment.body = '/merge'
-    context.github.pulls.get = () => { return { data: { state: 'closed' } } }
+    context.octokit.pulls.get = () => { return { data: { state: 'closed' } } }
     await handleComment(context)
     expect(mergeCalled).toBeFalsy()
   })
